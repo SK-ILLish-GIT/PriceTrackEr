@@ -18,14 +18,17 @@ export const revalidate = 0;
 export async function GET() {
 	try {
 		connectDB();
-		const products = await Products.find({});
+		const products: Product[] = (await Products.find({})) as Product[];
 		if (!products) throw new Error("No products found.");
 
 		//scrape all products and update them in DB
 		const updatedProducts = await Promise.all(
 			products.map(async (currProduct) => {
 				const scrapedProduct = await scrapeAmazonProduct(currProduct.url);
-				if (!scrapedProduct) throw new Error("Error scraping product.");
+				if (!scrapedProduct) {
+					console.log("Error in scraping product.");
+					return;
+				}
 
 				const updatedPriceHistory: any = [
 					...currProduct.priceHistory,
