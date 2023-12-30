@@ -18,7 +18,7 @@ export const revalidate = 0;
 export async function GET() {
 	try {
 		connectDB();
-		const products = await Products.find();
+		const products = await Products.find({});
 		if (!products) throw new Error("No products found.");
 
 		//scrape all products and update them in DB
