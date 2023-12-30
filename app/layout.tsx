@@ -30,6 +30,7 @@ export default function RootLayout({
 					{children}
 				</main>
 				<ToastContainer />
+				<SpeedInsights />
 			</body>
 		</html>
 	);
