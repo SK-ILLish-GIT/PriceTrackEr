@@ -60,7 +60,7 @@ export async function scrapeAmazonProduct(url: string) {
 		const imageURLs = Object.keys(JSON.parse(images));
 
 		//description
-		const description: String = extractDescription($);
+		const description: string = extractDescription($);
 		//category
 		const productCategory = $("#nav-subnav").attr("data-category")?.trim();
 
