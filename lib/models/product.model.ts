@@ -29,13 +29,13 @@ const productSchema = new mongoose.Schema(
 				date: { type: Date, default: Date.now() },
 			},
 		],
-		loweestPrice: {
+		lowestPrice: {
 			type: Number,
 		},
 		highestPrice: {
 			type: Number,
 		},
-		avaragePrice: {
+		averagePrice: {
 			type: Number,
 		},
 		discountRate: {
@@ -52,6 +52,12 @@ const productSchema = new mongoose.Schema(
 			type: String,
 			default: "Other",
 		},
+		reviews: [
+			{
+				type: String,
+				default: [],
+			},
+		],
 		reviewsCount: {
 			type: Number,
 			default: 0,

@@ -1,6 +1,7 @@
 export function extractDescription($: any) {
 	// these are possible elements holding description of the product
 	const selectors = [
+		// "#product-summary p span",
 		"#productDescription p span",
 		".a-unordered-list .a-list-item",
 		".a-expander-content p",
@@ -14,7 +15,8 @@ export function extractDescription($: any) {
 			const textContent = elements
 				.map((_: any, element: any) => $(element).text().trim())
 				.get()
-				.join("\n");
+				.join(". ");
+			// console.log(textContent);
 			return textContent;
 		}
 	}

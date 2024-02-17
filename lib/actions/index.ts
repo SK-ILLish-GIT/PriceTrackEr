@@ -7,7 +7,7 @@ import { scrapeAmazonProduct } from "../scraper";
 import {
 	getLowestPrice,
 	getHighestPrice,
-	getAvaragePrice,
+	getAveragePrice,
 } from "../utils/getHigh_Low_Avg";
 import { revalidatePath } from "next/cache";
 import { generateEmailBody, sendEmail } from "../nodemailer";
@@ -35,7 +35,7 @@ export async function scrapeAndStoreData(pdtUrl: string) {
 				priceHistory: updatedPriceHistory,
 				lowestPrice: getLowestPrice(updatedPriceHistory),
 				highestPrice: getHighestPrice(updatedPriceHistory),
-				avaragePrice: getAvaragePrice(updatedPriceHistory),
+				averagePrice: getAveragePrice(updatedPriceHistory),
 				reviewsCount: Math.max(
 					existingProduct.reviewsCount,
 					scrapedProduct.reviewsCount

@@ -6,6 +6,7 @@ import { extractDiscountRate } from "../utils/extractDiscountRate";
 import { extractDescription } from "../utils/extractDescription";
 import { extractReviewsCount } from "../utils/extractReviewsCount";
 import { extractStars } from "../utils/extractStars";
+import { extractReviews } from "../utils/extractReviews";
 
 export async function scrapeAmazonProduct(url: string) {
 	if (!url) return;
@@ -29,7 +30,7 @@ export async function scrapeAmazonProduct(url: string) {
 		const title = $("#productTitle").text().trim();
 
 		//currentPrice
-		const currentPrice = extractPrice(
+		var currentPrice = extractPrice(
 			$("span.a-price-whole"),
 			$("#tp_price_block_total_price_in"),
 			$(".comparison_baseitem_column .a-color-price"),
@@ -61,9 +62,13 @@ export async function scrapeAmazonProduct(url: string) {
 
 		//description
 		const description: string = extractDescription($);
+		// console.log(summarizedDescription);
 		//category
 		const productCategory = $("#nav-subnav").attr("data-category")?.trim();
 
+		//reviews
+		// const reviews = extractReviews($);
+		const reviews = "";
 		//reviewsCount
 		const reviewsCount = extractReviewsCount($);
 
@@ -71,6 +76,9 @@ export async function scrapeAmazonProduct(url: string) {
 		const stars = extractStars($);
 
 		//construct data object
+		if (currentPrice === "0") {
+			currentPrice = originalPrice;
+		}
 		const data = {
 			url,
 			currency: currency || "₹", //default currency is INR
@@ -82,11 +90,12 @@ export async function scrapeAmazonProduct(url: string) {
 			priceHistory: [],
 			highestPrice: Number(originalPrice) || Number(currentPrice),
 			lowestPrice: Number(currentPrice) || Number(originalPrice),
-			avaragePrice: Number(currentPrice) || Number(originalPrice),
+			averagePrice: Number(currentPrice) || Number(originalPrice),
 			discountRate: Number(discountRate),
 			//about Product
-			description,
+			description: description || "No description available",
 			category: productCategory || "other",
+			reviews: reviews || [],
 			reviewsCount: Number(reviewsCount) || 0,
 			stars: stars || 0,
 			outOfStock,

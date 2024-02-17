@@ -36,12 +36,14 @@ const Searchbar = () => {
 			setIsLoading(true);
 			//scraping data from amazon
 			const productData = await scrapeAndStoreData(searchLink);
+			//console.log(productData);
 			toast.success("Product added successfully");
 		} catch (error: any) {
 			console.log(error);
 			toast.error(error.message);
 		} finally {
 			setIsLoading(false);
+			// setSearchLink("");
 		}
 	};
 	return (

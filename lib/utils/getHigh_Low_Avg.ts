@@ -28,11 +28,11 @@ export function getLowestPrice(priceList: PriceHistoryItem[]) {
 	return lowestPrice.price;
 }
 
-export function getAvaragePrice(priceList: PriceHistoryItem[]) {
+export function getAveragePrice(priceList: PriceHistoryItem[]) {
 	const sumOfPrices = priceList.reduce((acc, curr) => acc + curr.price, 0);
-	const avaragePrice = sumOfPrices / priceList.length || 0;
+	const averagePrice = sumOfPrices / priceList.length || 0;
 
-	return avaragePrice;
+	return averagePrice;
 }
 export const formatNumber = (num: number = 0) => {
 	return num.toLocaleString(undefined, {

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-
 const navIcons = [
 	{
 		src: "/assets/icons/search.svg",
@@ -19,8 +18,8 @@ const navIcons = [
 const Navbar = () => {
 	return (
 		<header className="w-full">
-			<nav className="nav">
-				<Link href="/" className="flex items-center gap-1">
+			<nav className="flex flex-col sm:flex-row nav">
+				<Link href="/" className="flex items-center gap-1 m-1">
 					<Image
 						src="/assets/icons/logo.svg"
 						alt="logo"
@@ -34,8 +33,8 @@ const Navbar = () => {
 						</strong>
 					</p>
 				</Link>
-				<div className="flex items-center gap-6">
-					{navIcons.map((icon, index) => (
+				<div className="flex items-center gap-10 sm:gap-6 m-1">
+					{/* {navIcons.map((icon, index) => (
 						<Image
 							key={index}
 							src={icon.src}
@@ -43,7 +42,7 @@ const Navbar = () => {
 							width={28}
 							height={28}
 						/>
-					))}
+					))} */}
 				</div>
 			</nav>
 		</header>

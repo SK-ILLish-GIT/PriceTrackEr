@@ -14,10 +14,14 @@ type Props = {
 		id: string;
 	};
 };
+function generateRandomNumber() {
+	return Math.floor(Math.random() * (92 - 89 + 1)) + 89;
+}
 const ProductDetails = async ({ params: { id } }: Props) => {
 	const product: Product = await getProductById(id);
 	if (!product) redirect("/");
 	const similarProducts = await getSimilarProducts(id);
+	const rand = generateRandomNumber();
 	return (
 		<div className="product-container">
 			<div className="flex gap-28 xl:flex-row flex-col">
@@ -102,8 +106,11 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 								</div>
 							</div>
 							<p className="text-sm text-black opacity-50">
-								<span className="text-primary-green font-semibold">90% </span>of
-								buyers have recommended this.
+								<span className="text-primary-green font-semibold">
+									{rand}
+									{"% "}
+								</span>
+								of buyers have recommended this.
 							</p>
 						</div>
 					</div>
@@ -118,10 +125,10 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 								colorTheme="#000000"
 							/>
 							<PriceInfoCard
-								title="Avarage price"
+								title="Average price"
 								iconSrc="/assets/icons/chart.svg"
 								value={`${product.currency} ${formatNumber(
-									product.avaragePrice
+									product.averagePrice
 								)}`}
 								colorTheme="#BBC5FF"
 							/>

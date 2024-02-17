@@ -17,11 +17,12 @@ export type Product = {
 	priceHistory: PriceHistoryItem[] | [];
 	highestPrice: number;
 	lowestPrice: number;
-	avaragePrice: number;
+	averagePrice: number;
 	discountRate: number;
 	description: string;
 	category: string;
 	reviewsCount: number;
+	reviews: string[];
 	stars: number;
 	outOfStock: Boolean;
 	users?: User[];

@@ -97,7 +97,7 @@ export const sendEmail = async (
 ) => {
 	const mailOptions = {
 		from: {
-			name: "PriceWise",
+			name: "Price TrackEr",
 			address: String(process.env.EMAIL_ADDRESS),
 		},
 		to: sendTo,

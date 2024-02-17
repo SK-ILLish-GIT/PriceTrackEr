@@ -4,7 +4,7 @@ import { generateEmailBody, sendEmail } from "@/lib/nodemailer";
 import { scrapeAmazonProduct } from "@/lib/scraper";
 import { getEmailNotificationType } from "@/lib/utils/getEmailNotificationType";
 import {
-	getAvaragePrice,
+	getAveragePrice,
 	getHighestPrice,
 	getLowestPrice,
 } from "@/lib/utils/getHigh_Low_Avg";
@@ -41,7 +41,7 @@ export async function GET() {
 					priceHistory: updatedPriceHistory,
 					lowestPrice: getLowestPrice(updatedPriceHistory),
 					highestPrice: getHighestPrice(updatedPriceHistory),
-					avaragePrice: getAvaragePrice(updatedPriceHistory),
+					averagePrice: getAveragePrice(updatedPriceHistory),
 				};
 				const updatedProduct = await Products.findOneAndUpdate(
 					{ url: scrapedProduct.url },
