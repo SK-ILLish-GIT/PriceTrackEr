@@ -14,7 +14,7 @@ const ProductCard = ({ product }: Props) => {
 				<Image
 					src={product.imageURL}
 					alt={product.title}
-					className="product-card_img"
+					className="product-card_img bg-blend-saturation"
 					height={200}
 					width={200}
 				/>

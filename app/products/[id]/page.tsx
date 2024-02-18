@@ -5,6 +5,7 @@ import ProductCard from "@/components/ProductCard";
 import { getProductById, getSimilarProducts } from "@/lib/actions";
 import { formatNumber } from "@/lib/utils/getHigh_Low_Avg";
 import { Product } from "@/types";
+import { Chip } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -34,7 +35,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 						className="mx-auto"
 					/>
 				</div>
-				<div className="flex-1 flex flex-col">
+				<div className="flex-1 flex flex-col bg-slate-200 rounded-lg p-2 md:p-4 m-1 md:m-2 shadow-2xl">
 					<div className="flex justify-between items-start gap-5 flex-wrap pb-6">
 						<div className="flex flex-col gap-3">
 							<p className="text-[28px] text-secondary font-semibold">
@@ -59,14 +60,14 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 									{product.reviewsCount}
 								</p>
 							</div>
-							<div className="p-2 bg-white-200 rounded-10">
+							{/* <div className="p-2 bg-white-200 rounded-10">
 								<Image
 									src="/assets/icons/bookmark.svg"
 									alt="bookmark"
 									width={20}
 									height={20}
 								/>
-							</div>
+							</div> */}
 							<CopyToClipboard linkToCopy={product.url} />
 						</div>
 					</div>
@@ -153,11 +154,14 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 					</div>
 				</div>
 			</div>
-			<div className="flex flex-col gap-16">
-				<div className="flex flex-col gap-5">
-					<h3 className="text-2xl text-secondary font-semibold">
-						Product Description
-					</h3>
+			<div className="flex flex-col gap-16 mt-[-3rem]">
+				<div className="flex flex-col gap-5 bg-slate-200 rounded-xl p-1 md:p-5 shadow-2xl">
+					<div className="flex flex-col lg:flex-row gap-5 items-center">
+						<h3 className="text-4xl text-center text-secondary font-semibold">
+							Product Description
+						</h3>
+						<Chip className="text-md" label="AI GENERATED" color="primary" />
+					</div>
 					<div className="flex flex-col gap-4">
 						{product.description?.split("\n").map((line, index) => (
 							<p key={index} className="text-black">
@@ -180,8 +184,10 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 			</div>
 			{similarProducts && similarProducts.length > 0 && (
 				<div className="py-14 flex flex-col gap-2 w-full">
-					<p className="section-text">Similar Products</p>
-					<div className="flex flex-wrap gap-10 mt-7 w-full">
+					<h2 className="text-4xl md:text-5xl text-secondary font-semibold pl-2 md:pl-4">
+						Similar <span className="text-primary">Products 🔀</span>{" "}
+					</h2>
+					<div className="flex flex-wrap justify-center gap-10 mt-7 w-full  bg-slate-200 rounded-2xl p-2 pb-4 items-center shadow-2xl">
 						{similarProducts.map((product) => (
 							<ProductCard key={product._id} product={product} />
 						))}

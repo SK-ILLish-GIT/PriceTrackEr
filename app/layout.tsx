@@ -12,9 +12,9 @@ const spaceGrotesk = Space_Grotesk({
 	weight: ["300", "400", "500", "600", "700"],
 });
 export const metadata: Metadata = {
-	title: "PriceTrackEr",
+	title: "Price TrackEr 🔥",
 	description:
-		"PriceTrackEr is a price tracker for Amazon/Myntra products. It allows you to track the price of any product and notifies you when the price drops.",
+		"PriceTrackEr is a price tracker for Amazon products. It allows you to track the price of any product and notifies you when the price drops.",
 };
 
 export default function RootLayout({

@@ -7,6 +7,7 @@ import { extractDescription } from "../utils/extractDescription";
 import { extractReviewsCount } from "../utils/extractReviewsCount";
 import { extractStars } from "../utils/extractStars";
 import { extractReviews } from "../utils/extractReviews";
+import { summarizedDescription } from "../utils/summarizeDescription";
 
 export async function scrapeAmazonProduct(url: string) {
 	if (!url) return;
@@ -63,6 +64,14 @@ export async function scrapeAmazonProduct(url: string) {
 		//description
 		const description: string = extractDescription($);
 		// console.log(summarizedDescription);
+		let summarizedDescriptionText: string =
+			"title of the product is : " + title;
+		if (description) {
+			summarizedDescriptionText += "description of the product :" + description;
+			summarizedDescriptionText = await summarizedDescription(
+				summarizedDescriptionText
+			);
+		}
 		//category
 		const productCategory = $("#nav-subnav").attr("data-category")?.trim();
 
@@ -93,7 +102,7 @@ export async function scrapeAmazonProduct(url: string) {
 			averagePrice: Number(currentPrice) || Number(originalPrice),
 			discountRate: Number(discountRate),
 			//about Product
-			description: description || "No description available",
+			description: summarizedDescriptionText || description,
 			category: productCategory || "other",
 			reviews: reviews || [],
 			reviewsCount: Number(reviewsCount) || 0,

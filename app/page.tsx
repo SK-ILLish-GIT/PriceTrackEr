@@ -23,7 +23,7 @@ const Home = async () => {
 						</p>
 						<h1 className="head-text">
 							Unleash the power 🔥 of{" "}
-							<strong className="text-6xl">
+							<strong className="text-4xl sm:text-6xl">
 								{" "}
 								Price
 								<span className="text-primary">TrackEr</span>
@@ -40,8 +40,12 @@ const Home = async () => {
 				</div>
 			</section>
 			<section className="trending-section">
-				<h2 className="section-text">Trending</h2>
-				<div className="flex flex-wrap gap-x-8 gap-y-16">
+				<div className="flex items-center">
+					<h2 className="text-5xl text-secondary font-semibold">
+						Trending <span className="text-primary">Products 🔥</span>{" "}
+					</h2>
+				</div>
+				<div className="flex flex-wrap justify-center gap-x-6 gap-y-16 bg-slate-200 rounded-2xl p-4 pb-4 items-center shadow-2xl">
 					{allProducts?.map((product) => (
 						<ProductCard key={product._id} product={product} />
 					))}
