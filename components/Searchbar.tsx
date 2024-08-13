@@ -23,6 +23,7 @@ const Searchbar = () => {
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		//console.log(seachLink);
+		let productData;
 		const isValid = isValidLink(searchLink);
 		if (!isValid) {
 			if (searchLink === "") {
@@ -35,15 +36,20 @@ const Searchbar = () => {
 		try {
 			setIsLoading(true);
 			//scraping data from amazon
-			const productData = await scrapeAndStoreData(searchLink);
-			//console.log(productData);
+			productData = await scrapeAndStoreData(searchLink);
+			// console.log(productData);
 			toast.success("Product added successfully");
+			//redirecting feature ----needed to implement
+			// if (productData?._id) {
+			// 	window.location.href = productData.url;
+			// }
 		} catch (error: any) {
 			console.log(error);
 			toast.error(error.message);
 		} finally {
 			setIsLoading(false);
-			// setSearchLink("");
+			// console.log(productData);
+			setSearchLink("");
 		}
 	};
 	return (
