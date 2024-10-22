@@ -41,6 +41,7 @@ export async function scrapeAndStoreData(pdtUrl: string) {
 					scrapedProduct.reviewsCount
 				),
 			};
+			return currentProduct;
 		}
 		const newProduct = await Products.findOneAndUpdate(
 			{ url: scrapedProduct.url },
@@ -48,6 +49,7 @@ export async function scrapeAndStoreData(pdtUrl: string) {
 			{ upsert: true, new: true }
 		);
 		revalidatePath(`/products/${newProduct._id}`);
+		return newProduct;
 	} catch (error) {
 		throw new Error(`Error in Create/Update product Details : ${error}`);
 	}
