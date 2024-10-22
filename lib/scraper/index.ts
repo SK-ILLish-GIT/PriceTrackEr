@@ -64,20 +64,20 @@ export async function scrapeAmazonProduct(url: string) {
 		//description
 		const description: string = extractDescription($);
 		// console.log(summarizedDescription);
-		let summarizedDescriptionText: string =
-			"title of the product is : " + title;
+		let summarizedDescriptionText: string = "title of the product is : " + title;
 		if (description) {
-			summarizedDescriptionText += "description of the product :" + description;
+			summarizedDescriptionText += "description of the product is :" + description;
 			summarizedDescriptionText = await summarizedDescription(
 				summarizedDescriptionText
-			);
+			) || "";
 		}
 		//category
 		const productCategory = $("#nav-subnav").attr("data-category")?.trim();
 
 		//reviews
-		// const reviews = extractReviews($);
-		const reviews = "";
+		const reviews = extractReviews($);
+		// console.log(reviews);
+		// const reviews = "";
 		//reviewsCount
 		const reviewsCount = extractReviewsCount($);
 
@@ -104,12 +104,13 @@ export async function scrapeAmazonProduct(url: string) {
 			//about Product
 			description: summarizedDescriptionText || description,
 			category: productCategory || "other",
-			reviews: reviews || [],
+			// reviews: reviews || [],
+			reviews : [],
 			reviewsCount: Number(reviewsCount) || 0,
 			stars: stars || 0,
 			outOfStock,
 		};
-		//console.log(data);
+		console.log(data);
 		return data;
 		// console.log(response.data);
 	} catch (error: any) {
